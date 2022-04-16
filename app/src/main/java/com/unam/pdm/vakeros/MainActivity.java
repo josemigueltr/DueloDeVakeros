@@ -2,10 +2,12 @@ package com.unam.pdm.vakeros;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.JobIntentService;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -89,8 +91,18 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    /**
+     * Metodo que se encarga de ejecutar el sonido de disparo cuando un arma es presionada
+     * @param gun bloque de la interfaz en la que se ha ejecutado la accion
+     */
+    public  void fire(View gun){
+        JobIntentService.enqueueWork(this,SoundPlayer.class,0, new Intent(SoundPlayer.ACTION_FIRE));
+
+    }
+
     protected void onResume() {
         super.onResume();
         init();
     }
+
 }

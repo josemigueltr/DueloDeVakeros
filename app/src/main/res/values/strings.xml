@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Cowboy duel</string>
+    <string name="gun_description" >Fire!</string>
     <!-- Not translatable -->
     <string name="dev_name" translatable="false" >DanyDolphin</string>
+
 </resources>
