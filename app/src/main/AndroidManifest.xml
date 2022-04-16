@@ -36,4 +36,19 @@
             android:exported="false" />
     </application>
 
+    <!-- Restricción para usar la salida de audio de forma opcional -->
+    <uses-feature android:name="android.hardware.audio.output"
+        android:required="false"/>
+    <!-- Restricción para usar el podómetro de forma opcional -->
+    <uses-feature android:name="android.hardware.sensor.stepdetector"
+        android:required="false"/>
+    <!-- Restricción para que la pantalla que permita la posición landscape de forma obligatoria -->
+    <uses-feature android:name="android.hardware.screen.landscape"
+        android:required="true"/>
+    <!-- Restricción para que la pantalla sea táctil de forma obligatoria -->
+    <uses-feature android:name="android.hardware.touchscreen"
+        android:required="true"/>
+
+
+
 </manifest>
