@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Duelo de vaqueros</string>
+    <string name="gun_description" >Dispara!</string>
 </resources>
