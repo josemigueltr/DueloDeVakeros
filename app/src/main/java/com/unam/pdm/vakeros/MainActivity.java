@@ -16,6 +16,7 @@ import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -123,6 +124,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void finalCountdown(View startButton){
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         startButton.setVisibility(View.INVISIBLE);
         checkStepSensor();
     }
@@ -132,7 +134,9 @@ public class MainActivity extends AppCompatActivity
      * @param gun bloque de la interfaz en la que se ha ejecutado la accion
      */
     public  void fire(View gun){
-        JobIntentService.enqueueWork(this,SoundPlayer.class,0, new Intent(SoundPlayer.ACTION_FIRE));
+        JobIntentService.enqueueWork(this,SoundPlayer.class,0,
+                new Intent(SoundPlayer.ACTION_FIRE));
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     }
 
