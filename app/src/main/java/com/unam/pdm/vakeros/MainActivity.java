@@ -19,9 +19,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 public class MainActivity extends AppCompatActivity
         implements SensorEventListener {
 
@@ -34,8 +31,6 @@ public class MainActivity extends AppCompatActivity
     private SensorManager sensorManager;
     private Sensor stepDetectorSensor;
     private byte steps;
-    private ExecutorService singleThreadProducer;
-    private DrawTimer asyncCounter;
     public static final byte SECONDS_TO_COUNT = 3;
 
     @Override
@@ -56,6 +51,25 @@ public class MainActivity extends AppCompatActivity
             );
         }
         if(stepDetectorSensor == null) sensorManager = null;
+    }
+
+    /**
+     * Hace que la aplicación se muestre en pantalla completa.
+     * No muestra el UI del dispositivo para que sea más inmersivo.
+     */
+    @Override
+    public void onWindowFocusChanged( boolean hasFocus){
+        super.onWindowFocusChanged(hasFocus);
+        if(hasFocus){
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
+                    View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                    View.SYSTEM_UI_FLAG_FULLSCREEN |
+                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            );
+        }
     }
 
     /**
@@ -93,14 +107,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {}
-
-    private void startTimer(){
-        if(singleThreadProducer == null){
-            singleThreadProducer = Executors.newSingleThreadExecutor();
-        }
-        asyncCounter = new DrawTimer(gunView, SECONDS_TO_COUNT);
-        singleThreadProducer.execute(asyncCounter);
-    }
 
     /**
      * Metodo que se encarga de ejecutar el sonido de disparo cuando un arma es presionada
