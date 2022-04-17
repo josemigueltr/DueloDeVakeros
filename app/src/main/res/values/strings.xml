@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Cowboy duel</string>
     <string name="gun_description" >Fire!</string>
+    <string name="start_button">Start duel</string>
     <!-- Not translatable -->
     <string name="dev_name" translatable="false" >DanyDolphin</string>
 
