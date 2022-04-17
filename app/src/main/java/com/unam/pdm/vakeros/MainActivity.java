@@ -110,6 +110,11 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    public void finalCountdown(View startButton){
+        startButton.setVisibility(View.INVISIBLE);
+        checkStepSensor();
+    }
+
     /**
      * Metodo que se encarga de ejecutar el sonido de disparo cuando un arma es presionada
      * @param gun bloque de la interfaz en la que se ha ejecutado la accion
