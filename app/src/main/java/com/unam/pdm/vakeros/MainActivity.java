@@ -19,6 +19,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class MainActivity extends AppCompatActivity
         implements SensorEventListener {
 
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity
     private SensorManager sensorManager;
     private Sensor stepDetectorSensor;
     private byte steps;
+    private ExecutorService singleThreadProducer;
+    private DrawTimer asyncCounter;
     public static final byte SECONDS_TO_COUNT = 3;
 
     @Override
@@ -105,9 +110,16 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private void startTimer(){
+        if(singleThreadProducer == null){
+            singleThreadProducer = Executors.newSingleThreadExecutor();
+        }
+        asyncCounter = new DrawTimer(gunView, SECONDS_TO_COUNT);
+        singleThreadProducer.execute(asyncCounter);
+    }
+
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
-
     }
 
     /**
