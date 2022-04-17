@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity
 
     /**
      * Hace que la aplicación se muestre en pantalla completa.
+     * No muestra el UI del dispositivo para que sea más inmersivo.
      */
     @Override
     public void onWindowFocusChanged( boolean hasFocus){
