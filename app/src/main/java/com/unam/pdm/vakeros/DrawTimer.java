@@ -3,6 +3,7 @@ package com.unam.pdm.vakeros;
 import android.view.View;
 import android.widget.ImageView;
 
+/* Clase que implementa contador asincrono */
 public class DrawTimer implements Runnable {
 
     private ImageView gunView;
