@@ -123,8 +123,4 @@ public class MainActivity extends AppCompatActivity
         init();
     }
 
-    public void finalCountdown(View startButton){
-        startButton.setVisibility(View.INVISIBLE);
-        checkStepSensor();
-    }
 }
