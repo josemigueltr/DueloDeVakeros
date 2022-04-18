@@ -6,7 +6,6 @@ import androidx.core.app.JobIntentService;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -49,6 +48,7 @@ public class MainActivity extends AppCompatActivity
 
         // Asignación de referencias
         gunView = findViewById(R.id.gun_iv);
+        startButton=findViewById(R.id.start_button);
 
         // instancias para el sensor
         sensorManager = (SensorManager) getSystemService(
