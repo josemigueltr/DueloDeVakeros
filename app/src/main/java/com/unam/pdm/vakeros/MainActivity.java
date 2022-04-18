@@ -6,8 +6,10 @@ import androidx.core.app.JobIntentService;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -67,6 +69,8 @@ public class MainActivity extends AppCompatActivity
     public void onWindowFocusChanged( boolean hasFocus){
         super.onWindowFocusChanged(hasFocus);
         if(hasFocus){
+            //Fijamos la pantalla en una sola posicion
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER_LANDSCAPE);
             getWindow().getDecorView().setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE |
