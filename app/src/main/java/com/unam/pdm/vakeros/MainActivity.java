@@ -17,6 +17,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -141,9 +142,31 @@ public class MainActivity extends AppCompatActivity
         JobIntentService.enqueueWork(this,SoundPlayer.class,0,
                 new Intent(SoundPlayer.ACTION_FIRE));
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                init();
+            }
+        }, 3000);
 
     }
 
+    private void killCounter() {
+        if(sensorManager != null){
+            sensorManager.unregisterListener(this);
+        }else if(singleThreadProducer != null){
+            singleThreadProducer.shutdownNow();
+            singleThreadProducer = null;
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        killCounter();
+        super.onPause();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         init();
