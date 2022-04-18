@@ -116,6 +116,15 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private void checkStepSensor() {
+        if(sensorManager == null) {
+            startTimer();
+            return;
+        }
+        sensorManager.registerListener(this, stepDetectorSensor,
+                SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
     private void startTimer(){
         if(singleThreadProducer == null){
             singleThreadProducer = Executors.newSingleThreadExecutor();
