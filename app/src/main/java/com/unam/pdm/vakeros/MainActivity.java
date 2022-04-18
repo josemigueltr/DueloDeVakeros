@@ -171,6 +171,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onPause() {
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         killCounter();
         super.onPause();
     }
